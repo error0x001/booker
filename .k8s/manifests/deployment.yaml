@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booker
+  namespace: booker
+  labels:
+    app: booker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booker
+  template:
+    metadata:
+      labels:
+        app: booker
+    spec:
+      containers:
+      - name: booker
+        image: error0x001/booker:latest
+        imagePullPolicy: Always
+        ports:
+          - name: default
+            containerPort: 8080
+#        livenessProbe:
+#          httpGet:
+#            path: /_health/
+#            port: default
+#            scheme: HTTP
+#          timeoutSeconds:
+#            10
+#          periodSeconds:
+#            100
+        envFrom:
+          - configMapRef:
+              name: booker-configmap
+        command:
+          - "./app"

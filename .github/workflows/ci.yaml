@@ -1,0 +1,35 @@
+name: ci
+on:
+  push:
+
+jobs:
+  build:
+    name: building and testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.22
+
+      - name: building
+        run: go build -v ./...
+
+      - name: testing
+        run: go test -race -v ./...
+
+  golangci:
+    name: linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          install-mode: "goinstall"
+          args: --config .golangci.yml
+          version: v1.53.3

@@ -1,0 +1,26 @@
+name: cd
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: set up qemu
+        uses: docker/setup-qemu-action@v3
+      -
+        name: set up buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: login to dockerhub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: building and pushing
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: error0x001/booker:latest

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: booker-configmap
+  namespace: booker
+data:
+  "IS_PREPARE_AVAILABILITY_REQUIRED": "true"
+  "SERVER_PORT": "8080"

@@ -1,5 +1,5 @@
-![ci](https://github.com/error0x001/test/actions/workflows/ci.yml/badge.svg)
-![cd](https://github.com/error0x001/test/actions/workflows/cd.yml/badge.svg)
+![ci](https://github.com/error0x001/booker/actions/workflows/ci.yml/badge.svg)
+![cd](https://github.com/error0x001/booker/actions/workflows/cd.yml/badge.svg)
 
 # Прототип сервиса бронирования отелей
 

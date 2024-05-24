@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: booker-ingress
+  namespace: booker
+spec:
+  rules:
+  - host: "booker.ddns.net"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: booker-service
+            port:
+              number: 80
