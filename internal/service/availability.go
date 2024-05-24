@@ -27,6 +27,9 @@ type Query struct {
 func (s *Search) GetAvailability(query Query) []entites.RoomAvailability {
 	daysToBook := utils.DaysBetween(query.From, query.To)
 
+	s.availabilityRepo.Lock()
+	defer s.availabilityRepo.Unlock()
+
 	result := make([]entites.RoomAvailability, 0)
 	for _, day := range daysToBook {
 		availability, err := s.availabilityRepo.GetAvailability(query.HotelID, query.RoomID, day)

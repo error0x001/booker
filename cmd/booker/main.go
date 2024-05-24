@@ -5,7 +5,7 @@ import (
 	"booker/internal/config"
 	"booker/internal/domain/repos"
 	"booker/internal/infrastructure/logging"
-	infra "booker/internal/infrastructure/storage"
+	"booker/internal/infrastructure/storage"
 	"booker/internal/service"
 	"context"
 	"errors"
@@ -17,7 +17,7 @@ import (
 )
 
 func initRepositories(conf config.Config) (repos.OrderRepository, repos.AvailabilityRepository) {
-	orderRepo, availabilityRepo, err := infra.CreateRepositories(conf)
+	orderRepo, availabilityRepo, err := storage.CreateRepositories(conf)
 	if err != nil {
 		logging.LogPanicf(err.Error())
 	}
